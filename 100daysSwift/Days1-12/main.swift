@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  100daysSwift
+//  100daysSwift - Introduction to Swift
 //
 //  Created by Hojin Ryu on 09/06/21.
 //
