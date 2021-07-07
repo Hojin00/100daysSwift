@@ -55,7 +55,7 @@ func travel(action: () -> Void ){
 
 //travel(action: driving)
 
-// MARK: - 7DAYS Closures
+// MARK: - 7DAYS Closures (the least we need to know)
 func reading(readingChapters: (String) -> Void){
     let notes = "Once upon a time..."
     
@@ -102,3 +102,31 @@ let sum = addUp(arrayNum, handler: +)
 //print(sum)
 //this sum with handler "+" work just same as function above.
 //both closures want two Integers and return one Integer that's it. Just same func.
+
+
+// MARK: - 7DAYS Closure(Advanced closures)
+
+// MARK: Closures with multiple parameters
+func travel(action: (String, Int) -> String){
+    let destination = "LA"
+    let trip = action(destination, 60)
+    print(trip)
+}
+
+//travel { (dest: String, mile: Int) in
+//    return "I am going to \(dest) with \(mile) speed"
+//}
+
+// MARK: Returning closure from function
+func closureBack() -> () -> Int {
+    let calculate = {Int.random(in: 1...10)}
+    return calculate
+}
+
+let funcBack = closureBack()
+//print("funcBack: \(funcBack)")
+//returned "funcBack: (Function)", which means, it returns a closure(function), not a Int yet.
+
+let cloBack = funcBack()
+//here we actually called random gen func(closure)
+print("cloBack: \(cloBack)")
