@@ -129,4 +129,66 @@ let funcBack = closureBack()
 
 let cloBack = funcBack()
 //here we actually called random gen func(closure)
-print("cloBack: \(cloBack)")
+//print("cloBack: \(cloBack)")
+
+
+// MARK: - Just a quick study(Functions/Closures) in Swift document guide
+// let's say we have a incrementer func
+// link: https://docs.swift.org/swift-book/LanguageGuide/Closures.html#ID103
+func calcIncrementer(forIncrement amount: Int) -> () -> Int{
+    var runningTotal = 0
+    print("runningTotal: \(runningTotal)") // 0, only runs this part once.
+    func incrementer() -> Int{
+        runningTotal += amount
+        print("running: \(runningTotal)") // 10...20...30
+        return runningTotal
+    }
+    return incrementer
+}
+
+/*
+in the nested function "incrementer", var runningTotal and amount, they are passed by capturing reference from surrounding function. No need to pass any by parameter.
+ 
+ More importantly, when outer function ends, they (references of variables) don't disappear.
+ and also, ensures that runningTotal is available the next time incrementer is called.
+*/
+
+/*
+let incrementsByTen = calcIncrementer(forIncrement: 10)
+print(incrementsByTen()) // -> 10
+print(incrementsByTen()) // -> 20
+print(incrementsByTen()) // -> 30
+
+let incrementsByTwo = calcIncrementer(forIncrement: 2)
+print(incrementsByTwo()) // -> 2
+print(incrementsByTwo()) // -> 4
+print(incrementsByTwo()) // -> 6
+*/
+
+/*
+Important: Closures & Functions are reference types.
+Whenever closure is set to a constant or variable, it refers a reference.
+So, what's happening above can happen because they are reference type.
+*/
+// MARK: -
+//Ex. Capturing closures
+func visitCountry() -> (String) -> Void{
+    var places = [String: Int]()
+    
+    return {
+        places[$0, default: 0] += 1
+        let nTimes = places[$0, default: 0]
+        print("number of times visited \($0): \(nTimes)")
+        
+    }
+}
+/*
+let tour = visitCountry()
+tour("LA")
+tour("France")
+tour("LA")
+number of times visited LA: 1
+number of times visited France: 1
+number of times visited LA: 2
+*/
+
