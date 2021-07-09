@@ -218,3 +218,58 @@ struct Progress {
 //progress.amount = 30
 //progress.amount = 80
 //progress.amount = 100
+
+// MARK: -9DAYS Struct Part Two
+// access control, static properties, and laziness
+
+/*
+ Keywords:
+    - Memberwise initializer / Custom initializer,
+ 
+ */
+
+//If i want Memberwise initializer to stay and use custom initializer as well. Just add extension. And use both.
+struct Employee {
+    var name: String
+    var yearsActive = 0
+}
+
+extension Employee {
+    init() {
+        self.name = "Anonymous"
+//        print("Creating an anonymous employee…")
+    }
+}
+
+// creating a named employee now works
+let roslin = Employee(name: "Laura Roslin")
+
+// as does creating an anonymous employee
+let anon = Employee()
+
+//Important:  Initializers cannot finish until all properties have a value
+
+// As a performance optimization, if we set a property as lazy
+// Ex. lazy var a = A()
+// It only creates this property when it's called at least once. If not called, don't even create. Just like computed property.
+// But in this case, lazy stores values after it's called, and computed property doesn't.
+
+
+// Static Properties & Methods
+// Why static? -> To share common information between all instances.
+struct Student {
+    static var classSize = 0 // in this case, this classSize belongs to struct Student itself, not an instance of Student.
+    var name: String
+
+    init(name: String) {
+        self.name = name
+        Student.classSize += 1
+    }
+}
+let stu1 = Student(name: "rob1")
+//print("stu1: \(Student.classSize)") // stu1: 1
+let stu2 = Student(name: "rob2")
+//print("stu2: \(Student.classSize)") // stu1: 2
+let stu3 = Student(name: "rob3")
+//print("stu3: \(Student.classSize)") // stu1: 3
+
