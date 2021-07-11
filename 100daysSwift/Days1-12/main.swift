@@ -224,7 +224,7 @@ struct Progress {
 
 /*
  Keywords:
-    - Memberwise initializer / Custom initializer,
+    - Memberwise initializer / Custom initializer, lazy, static,
  
  */
 
@@ -273,3 +273,32 @@ let stu2 = Student(name: "rob2")
 let stu3 = Student(name: "rob3")
 //print("stu3: \(Student.classSize)") // stu1: 3
 
+
+// MARK: -10DAYS classes and inheritance
+// MARK: Classes
+
+/*
+ Keyword: super/parent class -> sub/child class, inheritance, reference type, override, final, deinitializers
+ 
+ */
+
+/*
+ Difference between Classes and Structs
+    1. classes don't have memberwise initializers. Need to have own initilazer.
+    2. classes are reference type. structs are value type.
+    3. classes can be created by other existing classes(inheritance, super/parent class -> sub/child class), and because class has inheritance, it doesn't support memberwise initializers.
+    4. final classes. Literally, "final classes", no inheritance/subclassing available. The others cannot change or add.
+    5. classes can have deinitializers – code that gets run when an instance of a class is destroyed.
+    6. mutability -> If you have a constant struct with a variable property, that property can’t be changed because the struct itself is constant. But, classes can change thier properties.
+ */
+
+// Swift has automatic reference counting, or ARC -> keeps track of copy of reference count, so we can notice when # of instances gets to 0, we just deinit.
+class IceCream {
+    deinit {
+        print("No more icecream :(")
+    }
+    
+    init() {
+        print("we have icecream :)")
+    }
+}
