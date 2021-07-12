@@ -302,3 +302,105 @@ class IceCream {
         print("we have icecream :)")
     }
 }
+
+
+// MARK: -11DAYS protocols, extensions, and protocol extensions
+// Protocol
+
+/*
+ Keywords: protocol inheritance, protocol extensions(very important)
+ */
+
+/*
+Protocol -> is to define how structs, classes, and enums ought to work. just like(recipe)
+         -> is to define a minimum required functionality
+*/
+
+protocol Purchaseable {
+    var name: String { get set }
+}
+
+struct Book: Purchaseable {
+    var name: String
+    var author: String
+}
+
+struct Movie: Purchaseable {
+    var name: String
+    var actors: [String]
+}
+
+struct Car: Purchaseable {
+    var name: String
+    var manufacturer: String
+}
+
+struct Coffee: Purchaseable {
+    var name: String
+    var strength: Int
+}
+
+func buy(_ item: Purchaseable) {
+    print("I'm buying \(item.name)")//only property name can print which is in the protocol "Purchaseable".
+}
+
+var book1 = Book(name: "book1", author: "bookAutho1")
+var movie1 = Movie(name: "movie1", actors: ["movieAutho1"])
+var car1 = Car(name: "car1", manufacturer: "carmanufacturuer1")
+var coffe1 = Coffee(name: "coffee1", strength: 10)
+
+var allList:[Purchaseable] = [book1, movie1, car1, coffe1]
+//because all of them share same protocol "Purchaseable" we can put them in one array.
+/*
+for i in allList{
+    buy(i)
+}
+I'm buying book1
+I'm buying movie1
+I'm buying car1
+I'm buying coffee1
+*/
+
+//Unlike classes, protocol can inherit multiple protocols at the same time.
+protocol Payable {
+    func calculateWages() -> Int
+}
+
+protocol NeedsTraining {
+    func study()
+}
+
+protocol HasVacation {
+    func takeVacation(days: Int)
+}
+//protocol Employee: Payable, NeedsTraining, HasVacation { }
+
+// why protocol inheritance????
+// it's to eliminate a possibility of duplicate funcionality between them. So we can separate them and reassemble them after in one block.
+
+/*
+Extensions -> only accept computed properties, not stored properties.
+           -> to add more funcionality
+ 
+Protocol Extensions -> to add functionality directly to protocols, which means we don’t need to copy that functionality across many structs and classes that conforms that protocol.
+*/
+
+protocol hamburger{
+    var id: String { get set }
+    func burger()
+}
+
+extension hamburger{
+    func burger(){
+        print("burger: \(id)")
+    }
+}
+
+struct burgerHouse: hamburger{
+    var id: String
+    //here no need to implement func burger() because it's already defined in extension.
+}
+
+var burger1 = burgerHouse(id: "macAndCheese")
+//burger1.burger()
+

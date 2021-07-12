@@ -38,12 +38,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B29613DB2693DF4C000B2225 /* Days1-12 */ = {
+		B29613DB2693DF4C000B2225 /* Day1-12 */ = {
 			isa = PBXGroup;
 			children = (
 				B2DF6F4326718F4700ADAEA5 /* main.swift */,
 			);
-			path = "Days1-12";
+			path = "Day1-12";
 			sourceTree = "<group>";
 		};
 		B2DF6F3726718F4600ADAEA5 = {
@@ -65,7 +65,7 @@
 		B2DF6F4226718F4600ADAEA5 /* 100daysSwift */ = {
 			isa = PBXGroup;
 			children = (
-				B29613DB2693DF4C000B2225 /* Days1-12 */,
+				B29613DB2693DF4C000B2225 /* Day1-12 */,
 			);
 			path = 100daysSwift;
 			sourceTree = "<group>";
