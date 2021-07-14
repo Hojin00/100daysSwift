@@ -308,7 +308,7 @@ class IceCream {
 // Protocol
 
 /*
- Keywords: protocol inheritance, protocol extensions(very important)
+ Keywords: protocol inheritance, protocol extensions(very important), Protocol-Oriented-Programming
  */
 
 /*
@@ -404,3 +404,40 @@ struct burgerHouse: hamburger{
 var burger1 = burgerHouse(id: "macAndCheese")
 //burger1.burger()
 
+
+// MARK: -12DAYS optionals, unwrapping, and typecasting
+
+// Optional -> to represent the absence of some data
+
+/*
+ Unwrapping optional -> If let, Guard let, force unwrap(careful with this)
+ 
+ Implicitly unwrapped optinal -> let age: Int! = nil. We only use when we are so sure that it will have value. No need to use guard let & if let to unwrap.
+ 
+ nil coalescing -> if the optional was nil – then a default value is used instead
+                -> let user = username(for: 15) ?? "Anonymous"
+ 
+ optional chaining -> if it’s nil the rest of the line will be ignored – Swift will return nil immediately.
+                   -> let beatle = names.first?.uppercased()
+ 
+ optional try -> "try?" changes throwing functions into functions that return an optional. If the function throws an error you’ll be sent nil as the result, otherwise you’ll get the return value wrapped as an optional.
+              -> if let result = try? checkPassword("password"){}
+                
+ */
+
+struct EEmployee {
+    var username: String
+    var password: String
+
+    init?(username: String, password: String) {
+        guard password.count >= 8 else { return nil }
+        guard password.lowercased() != "password" else { return nil }
+
+        self.username = username
+        self.password = password
+    }
+}
+//init?(failable init) -> Rather than returning a new object instance, this returns an optional instance that will be nil if initialization failed
+//      -> What's inside of init? requires passwords be at least 8 characters and not be the string “password”.
+
+//as?(typecasting) -> it will be nil if the typecast failed, or a converted type otherwise
